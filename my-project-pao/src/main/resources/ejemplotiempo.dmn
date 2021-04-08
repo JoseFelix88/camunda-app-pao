@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1l7atwc" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.6.0">
+  <decision id="tiempo" name="Ropa Clima">
+    <informationRequirement id="InformationRequirement_0ejwuyn">
+      <requiredDecision href="#clima" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0ejscts">
+      <requiredInput href="#InputData_1jv8js0" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1e2p5a1">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>Clima</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_11yfwhy">
+        <inputExpression id="LiteralExpression_1bcmwcj" typeRef="boolean">
+          <text>Cantidad Ropa para retirar</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="Ropa Clima" typeRef="string" />
+      <rule id="DecisionRule_1bav4nh">
+        <description>Clima extermo</description>
+        <inputEntry id="UnaryTests_1w64s9y">
+          <text>"Frio"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cqmlmd">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02s877n">
+          <text>"ABRIGADO"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0cv2hl9">
+        <description>Clima extremo</description>
+        <inputEntry id="UnaryTests_015nj6e">
+          <text>"Hielo"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wshv0g">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lg4y1y">
+          <text>"MUY ABRIGADO"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1gtmrxf">
+        <inputEntry id="UnaryTests_0dlnmek">
+          <text>"Calido"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x2rm7o">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nmsbun">
+          <text>"POCO ABRIGADO"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1j2429w">
+        <inputEntry id="UnaryTests_01cwgvn">
+          <text>"Soleado"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0932n80">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nw9ft9">
+          <text>"SIN ABRIGO"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0g5vj56">
+        <inputEntry id="UnaryTests_0thsudl">
+          <text>"Vientos"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cl0b6v">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xnpkig">
+          <text>"POCO ABRIGADO"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1s5brkk">
+        <description>Clima  Variante</description>
+        <inputEntry id="UnaryTests_0z3q0il">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1emdaky">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1c565vh">
+          <text>"INDETERMINADO"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="clima" name="Clima">
+    <informationRequirement id="InformationRequirement_05gxh99">
+      <requiredInput href="#InputData_0hak1lf" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0fjdhyq">
+      <requiredInput href="#InputData_1mep3i2" />
+    </informationRequirement>
+    <authorityRequirement id="AuthorityRequirement_084cuvc">
+      <requiredAuthority href="#KnowledgeSource_1702lf7" />
+    </authorityRequirement>
+    <decisionTable id="DecisionTable_1dcli1y">
+      <input id="InputClause_0lo8t4f">
+        <inputExpression id="LiteralExpression_1vzexf6" typeRef="string">
+          <text>Estacion</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1o7jre5">
+        <inputExpression id="LiteralExpression_18svnh5" typeRef="integer">
+          <text>Temperatura Clima</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_12fxat3">
+        <inputExpression id="LiteralExpression_1f81245" typeRef="date">
+          <text>Fecha Estacion</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0fmk35s" name="Clima" typeRef="string" />
+      <output id="OutputClause_0oryrhh" name="Ropa Clima" typeRef="string" />
+      <rule id="DecisionRule_1exq1m8">
+        <inputEntry id="UnaryTests_1uxi7kc">
+          <text>"Invierno"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i554a6">
+          <text>[1..8]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s5mqud">
+          <text>[date and time("2021-12-21T00:00:00")..date and time("2021-02-20T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bw8fw3">
+          <text>"Frio"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_14dvrzl">
+          <text>"Abrigo grueso"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0eatl83">
+        <description>"Posible nieve"</description>
+        <inputEntry id="UnaryTests_1ttxln5">
+          <text>"Invierno"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cme9j6">
+          <text>&lt; 0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zhq6oa">
+          <text>[date and time("2021-12-21T00:00:00")..date and time("2021-02-20T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08f5a7u">
+          <text>"Hielo"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0iudlbo">
+          <text>"Abrigo grueso","Guantes", "Bufanda" </text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ao3ofh">
+        <description>"Sol y vientos"</description>
+        <inputEntry id="UnaryTests_0mlqhak">
+          <text>"Primavera"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z432vw">
+          <text>&gt; 9</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wh9ju1">
+          <text>[date and time("2021-03-20T00:00:00")..date and time("2021-06-21T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1udtqy1">
+          <text>"Calido"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0tvvwvp">
+          <text>"Ropa ligera"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mabw89">
+        <description>"Calor"</description>
+        <inputEntry id="UnaryTests_1v5gyfv">
+          <text>"Verano"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ch985u">
+          <text>&gt; 20</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09y2a2h">
+          <text>[date and time("2021-06-21T00:00:00")..date and time("2021-09-22T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00uldgu">
+          <text>"Soleado"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0mj7ofq">
+          <text>"Ropa corta y suave"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mf8r56">
+        <description>"Sol y lluvia"</description>
+        <inputEntry id="UnaryTests_1ikajat">
+          <text>"Otoño"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0g0etwx">
+          <text>&lt;= 10</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pmnfie">
+          <text>[date and time("2021-09-22T00:00:00")..date and time("2021-12-21T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0t7jr78">
+          <text>"VIentos"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1lpzhpe">
+          <text>"Abrigo ligero"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0hak1lf" name="Estacion" />
+  <inputData id="InputData_1mep3i2" name="Temperatura" />
+  <inputData id="InputData_1jv8js0" name="CantRopa" />
+  <knowledgeSource id="KnowledgeSource_1702lf7" name="Informacion del tiempo" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="tiempo">
+        <dc:Bounds height="80" width="180" x="550" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0ms4ocr" dmnElementRef="clima">
+        <dc:Bounds height="80" width="180" x="360" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1whstpd" dmnElementRef="InputData_0hak1lf">
+        <dc:Bounds height="45" width="125" x="288" y="378" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_04yj5xr" dmnElementRef="InformationRequirement_05gxh99">
+        <di:waypoint x="351" y="378" />
+        <di:waypoint x="420" y="310" />
+        <di:waypoint x="420" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_164rmd3" dmnElementRef="InputData_1mep3i2">
+        <dc:Bounds height="45" width="125" x="488" y="388" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1kg6z83" dmnElementRef="InformationRequirement_0fjdhyq">
+        <di:waypoint x="551" y="388" />
+        <di:waypoint x="480" y="310" />
+        <di:waypoint x="480" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_15ldzg7" dmnElementRef="InformationRequirement_0ejwuyn">
+        <di:waypoint x="450" y="210" />
+        <di:waypoint x="610" y="180" />
+        <di:waypoint x="610" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1fsrcjs" dmnElementRef="InputData_1jv8js0">
+        <dc:Bounds height="45" width="125" x="678" y="228" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1fntrjt" dmnElementRef="InformationRequirement_0ejscts">
+        <di:waypoint x="741" y="228" />
+        <di:waypoint x="670" y="180" />
+        <di:waypoint x="670" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0hnl25m" dmnElementRef="KnowledgeSource_1702lf7">
+        <dc:Bounds height="63" width="100" x="160" y="219" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0ubakr7" dmnElementRef="AuthorityRequirement_084cuvc">
+        <di:waypoint x="260" y="251" />
+        <di:waypoint x="360" y="250" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
